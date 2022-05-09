@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('name_en')->nullable();
-            $table->text('description_en')->nullable();
-            $table->string('code');
+            $table->string('code', 8);
+            $table->double('value');
+            $table->unsignedTinyInteger('type')->default(0);
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->unsignedTinyInteger('only_once')->default(0);
+            $table->timestamp('expired_at')->nullable();
             $table->text('description')->nullable();
-            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('coupons');
     }
 };

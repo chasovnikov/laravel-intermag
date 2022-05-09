@@ -17,11 +17,17 @@ return new class extends Migration
             $table->id();
             $table->integer('category_id');
             $table->string('name');
+            $table->string('name_en')->nullable();
+            $table->text('description_en')->nullable();
             $table->string('code');
             $table->text('description')->nullable();
             $table->text('image')->nullable();
-            $table->double('price')->default(0);
+            $table->tinyInteger('new')->default(0);
+            $table->tinyInteger('hit')->default(0);
+            $table->tinyInteger('recommend')->default(0);
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
